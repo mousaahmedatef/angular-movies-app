@@ -1,0 +1,61 @@
+
+<input [(ngModel)]="term"  placeholder="search here..." type="text" class="text-white form-control w-50 m-auto bg-transparent">
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div>
+            <div class="brdr w-25 mb-3"></div>
+            <h2>Trending</h2>
+            <h2>Movies</h2>
+            <h2>To show now</h2>
+
+            <span class="welcome">most watched movies by day</span>
+            <div class="brdr w-100 mt-3"></div>
+
+        </div>
+    </div>
+    <div *ngFor="let movie of trendingMovies|search:term" class="col-md-2">
+        <!-- | من العامه دى pipe بعرف ان انا مستخدم  
+              الى هتشتغل عليه قبل العلامه دى input بتاخد ال  pipe ف المفروض هنا ان ال
+              : تاني بعمل العلامه دى input ولو انا عايز اديها 
+              التاني input وبكتب بعدها ال
+        -->
+        <div>
+            <img class="w-100 mt-2" src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}" alt="">
+            <h4>{{movie.title}}</h4>
+            <a class="btn btn-primary" routerLink="/details/{{movie.media_type}}/{{movie.id}}">details</a>
+            <!-- 
+             وهيا انى لما اخلى الزرار بتاعها  details هنا المفروض فيه مشكبه ف حته ال
+             بس المشكله ان هوا هيروح  routerLink="details" بكتب  details يروح لصفحه ال
+             بس /details لان انا اصلا واقف على الهوم ونا مش عايز كدا انا عايز يكون  home/details ويعمل كدا routing فوق على ال
+             path وهيا انى احط اسلاش قبل ال routerLink="/details" وبحلها بانى اعمل كدا deep routing  ف دى مشكله اسمها ال 
+             بتاعى path تلاقيه شيله وحط مكانه ال path وبكدا انا بقولو اى 
+            -->
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div>
+            <div class="brdr w-25 mb-3"></div>
+            <h2>Trending</h2>
+            <h2>Tvshows</h2>
+            <h2>To show now</h2>
+
+            <span class="welcome">most watched TvShows by day</span>
+            <div class="brdr w-100 mt-3"></div>
+
+        </div>
+    </div>
+    <div *ngFor="let tv of trendingTvshows|search:term" class="col-md-2">
+        <div>
+            <img class="w-100 mt-2" src="https://image.tmdb.org/t/p/original/{{tv.poster_path}}" alt="">
+            <h4 >{{tv.name}}</h4>
+            <a class="btn btn-primary" routerLink="/details/{{tv.media_type}}/{{tv.id}}">details</a>
+
+        </div>
+    </div>
+</div>
